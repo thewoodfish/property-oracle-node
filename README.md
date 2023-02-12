@@ -28,4 +28,6 @@ Once this state change is complete, the `NewUserRecorded` event is generated and
 	props: Vec<u8>,
    ) -> DispatchResult { ... } 
    ``` 
-This function accepts the `id(hash)` of a property, the name or title of the property document to be filled, the `cid` of the uploaded `KILT` chain `cType` and the required attributes or fields to be filled in a property document.
+This function accepts the `id(hash)` of a property, the name or title of the property document to be filled, the `cid` of the uploaded `KILT chain` `CType` and the required attributes or fields to be filled in a property document.
+This function creates a new property document and records it onchain. A property document is simply a wrapper for a `KILTs chain` `CType` document.
+Once this state change is complete, the `NewPropertyTypeRecorded` event is generated and visible on the blockchains UI explorer. 
