@@ -17,11 +17,12 @@ This function accepts a `cid` as its input. The `cid` is generated when the `KIL
 Once this state change is complete, the `NewUserRecorded` event is generated and visible on the blockchains UI explorer.
 
 - <b>`record_ptype:`</b>
-   ```pub fn record_ptype(
-		origin: OriginFor<T>,
-		hash: H256,
-		name: Vec<u8>,
-		cid: Vec<u8>,
-		props: Vec<u8>,
-	) -> DispatchResult { ... } ``` <br><br>
+   ```
+   pub fn record_ptype(
+	origin: OriginFor<T>,
+	hash: H256,
+	name: Vec<u8>,
+	cid: Vec<u8>,
+	props: Vec<u8>,
+   ) -> DispatchResult { ... } ``` <br><br>
 This function
