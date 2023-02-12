@@ -64,7 +64,7 @@ Once this state change is complete, the `PropertyTransferred` event is generated
    This function accepts the `id` of the property, the `cid` of the `KILT` credential or claim of the property, a `boolean` to determine whether the right authority(the registrar of the property type) is the one attesting or its just one of the many witnesses. What the function does is to record the credential attestation of the property, which signifies witnesses confirming the ownership of the property by the claimer. But because there are many witnesses doesn't enforce the ownership claim of the property, it only helps inform the right authorities that the claimer might just be telling the truth. It is when the authority decides to attest the credential that Property Oracle submits a request to the `KILT` chain to attest the property `credential` and records this action amd its timestamp onchain. When this happens, the claimer can then be called THE OWNER 😃.
    Once this function registers a complete state change, the `PropertyClaimAttested` event is generated and visible on the blockchains UI explorer.
    
-## Running a local node 
+## Running a local Property Oracle node 
 - Install the necessary `Rust toolchains` and configure them. Please take a look at <a target="_blank" href="https://docs.substrate.io/install/">this page</a> to guide you appropriately.
 - After installation, clone this repository.
 - After cloning, open the terminal in the root folder and run the command: `cargo build --release`.
