@@ -8,7 +8,7 @@ With Property Oracle, nobody can take what is yours and leave you with nothing.
 This repo contains the code for a typical Property Oracle node participating in the network. The property oracle chain is very important because it records critical information about users of the networks, the properties being secured or claimed, the claims and right to claim of the properties and so on, serving as a source of truth and actions. We would examine the chain properly. A Property Oracle node is completely built on <a target="_blank" href="https://substrate.io">substrate</a> which is the best framework for building a blockchain.
 
 ## Examining the `oracle pallet`
-Since this chain is build on <a target="_blank" href="https://substrate.io">substrate</a>, it comprises of <a target="_blank" href="https://substrate.io">pallets</a> which defines the business logic of the chain. We would be considering one very important property oracle pallet: the `oracle pallet`.
+Since this chain is build on <a target="_blank" href="https://substrate.io">substrate</a>, it comprises of <a target="_blank" href="https://docs.substrate.io/reference/frame-pallets/">pallets</a> which defines the business logic of the chain. We would be considering one very important property oracle pallet: the `oracle pallet`.
 
 ### Functions in the `oracle pallet`
 - <b>`record_user:`</b>
@@ -65,10 +65,10 @@ Once this state change is complete, the `PropertyTransferred` event is generated
    Once this function registers a complete state change, the `PropertyClaimAttested` event is generated and visible on the blockchains UI explorer.
    
 ## Running a local node 
-- Install the necessary `Rust toolchains` and configure them. Please take a look at <a target="_blank" href="https://substrate.io">this page</a> to guide you appropriately.
+- Install the necessary `Rust toolchains` and configure them. Please take a look at <a target="_blank" href="https://docs.substrate.io/install/">this page</a> to guide you appropriately.
 - After installation, clone this repository.
 - After cloning, open the terminal in the root folder and run the command: `cargo build --release`.
-- After your chain is built, run this command to start the chain: `./target/release/node-template --dev`
+- After your chain is built, run this command to start the chain in development mode: `./target/release/node-template --dev`
 - To interact with the chain from the explorer, visit this address in your browser: https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944.
 - To interact with the Property Oracle front end, you have to set it up first. kindly read through the set up at: https://github.com/thewoodfish/property_oracle#how-to-run-or-test-property-oracle. It is very easy.
 
