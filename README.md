@@ -49,4 +49,6 @@ Once this state change is complete, the `NewPropertyCredentialCreated` event is 
 	cid: Vec<u8>,
    ) -> DispatchResult { ... } 
    ``` 
-This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim created of a particular property.
+This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim created of the property. The functions processes the transfer of a claim to a property (verified or unverified) and changes the owner or claimer to the address of the recipient. This is an important operation as it can help trace the origin and history of the land sale, from hand to hand. <br>
+Once this state change is complete, the `PropertyTransferred` event is generated and visible on the blockchains UI explorer.
+
