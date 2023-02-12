@@ -25,4 +25,4 @@ Once this state change is complete, the `NewUserRecorded` event is generated and
 	cid: Vec<u8>,
 	props: Vec<u8>,
    ) -> DispatchResult { ... } ``` <br><br>
-This function
+This function accepts the `id(hash)` of a property, the name or title of the property document to be filled, the `cid` of the uploaded `KILT` chain `cType` and the required attributes or fields to be filled in a property document.
