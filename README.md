@@ -29,11 +29,11 @@ Once this state change is complete, the `NewUserRecorded` event is generated and
    ) -> DispatchResult { ... } 
    ``` 
 This function accepts the `id(hash)` of a property, the name or title of the property document to be filled, the `cid` of the uploaded `KILT chain` `CType` for the property document fields and the required attributes or fields to be filled in a property document.
-This function creates a new property document and records it onchain. <br>
+This function creates a new property document and records it onchain. It also takes note of the registrar of the document. The registrar is important because his signature is the single principal entity to attest a property credential and confer the right meaning of ownership. <br>
 Once this state change is complete, the `NewPropertyTypeRecorded` event is generated and visible on the blockchains UI explorer. 
 
 - <b>`record_ptype:`</b>
    ```
    pub fn record_credential(origin: OriginFor<T>, hash: H256, cid: Vec<u8>) -> DispatchResult { ... }
    ``` 
-This function accepts the `id(hash)` of a property and the `cid` to the `KILT` credentials or claim created concerning a particular property.
+This function accepts the `id(hash)` of a property and the `cid` to the `KILT` credential or claim created of a particular property. This function records the claim and the user
