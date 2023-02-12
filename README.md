@@ -11,4 +11,7 @@ This repo contains the code for a typical Property Oracle node participating in 
 Since this chain is build on <a target="_blank" href="https://substrate.io">substrate</a>, it comprises of <a target="_blank" href="https://substrate.io">pallets</a> which defines the business logic of the chain. We would be considering one very important property oracle pallet: the `oracle pallet`.
 
 ### Functions in the `oracle pallet`
-
+- ```record_user
+pub fn record_user(origin: OriginFor<T>, cid: Vec<u8>) -> DispatchResult { ... }
+```
+This function accepts the CID of a users DID as input.
