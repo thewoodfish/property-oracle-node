@@ -15,7 +15,6 @@ Since this chain is build on <a target="_blank" href="https://substrate.io">subs
    ```
    pub fn record_user(origin: OriginFor<T>, cid: Vec<u8>) -> DispatchResult { ... }
    ``` 
-   <br><br>
 This function accepts a `cid` as its input. The `cid` is generated when the `KILT did` document of a user is uploaded to `IPFS`. This `did` document is generated when a user creates an account with Property Oracle because its most certain that the user would be interacting with the <a target="_blank" href="https://kilt.io">`kilt`</a> blockchain in the background. What this function does is to store a mapping of the users `substrate account address` to the users `kilt` `did document` which contains all necessary info of the user.<br>
 Once this state change is complete, the `NewUserRecorded` event is generated and visible on the blockchains UI explorer.
 
@@ -29,5 +28,4 @@ Once this state change is complete, the `NewUserRecorded` event is generated and
 	props: Vec<u8>,
    ) -> DispatchResult { ... } 
    ``` 
-   <br><br>
 This function accepts the `id(hash)` of a property, the name or title of the property document to be filled, the `cid` of the uploaded `KILT` chain `cType` and the required attributes or fields to be filled in a property document.
