@@ -49,6 +49,17 @@ Once this state change is complete, the `NewPropertyCredentialCreated` event is 
 	cid: Vec<u8>,
    ) -> DispatchResult { ... } 
    ``` 
-This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim created of the property. The functions processes the transfer of a claim to a property (verified or unverified) and changes the owner or claimer to the address of the recipient. This is an important operation as it can help trace the origin and history of the land sale, from hand to hand. <br>
+This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim of the property. The functions processes the transfer of a claim to a property (verified or unverified) and changes the owner or claimer to the address of the recipient. This is an important operation as it can help trace the origin and history of the land sale, from hand to hand. <br>
 Once this state change is complete, the `PropertyTransferred` event is generated and visible on the blockchains UI explorer.
+
+- <b>`attest_claim:`</b>
+   ```
+   pub fn attest_claim(
+	origin: OriginFor<T>,
+	property_id: H256,
+	cid: Vec<u8>,
+	is_canonical_verifier: bool,
+   ) -> DispatchResult { ... } 
+   ``` 
+   This function accepts the `id` of the property, the `cid` of the `KILT` credential or claim of the property, a `boolean` to determine whether the right authority(the registrar of the property type) is the one attesting or its just one of the many witnesses.
 
