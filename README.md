@@ -64,4 +64,15 @@ Once this state change is complete, the `PropertyTransferred` event is generated
    This function accepts the `id` of the property, the `cid` of the `KILT` credential or claim of the property, a `boolean` to determine whether the right authority(the registrar of the property type) is the one attesting or its just one of the many witnesses. What the function does is to record the credential attestation of the property, which signifies witnesses confirming the ownership of the property by the claimer. But because there are many witnesses doesn't enforce the ownership claim of the property, it only helps inform the right authorities that the claimer might just be telling the truth. It is when the authority decides to attest the credential that Property Oracle submits a request to the `KILT` chain to attest the property `credential` and records this action amd its timestamp onchain. When this happens, the claimer can then be called THE OWNER 😃.
    Once this function registers a complete state change, the `PropertyClaimAttested` event is generated and visible on the blockchains UI explorer.
    
+## Running a local node 
+- Install the necessary `Rust toolchains` and configure them. Please take a look at <a target="_blank" href="https://substrate.io">this page</a> to guide you appropriately.
+- After installation, clone this repository.
+- After cloning, open the terminal in the root folder and run the command: `cargo build --release`.
+- After your chain is built, run this command to start the chain: `./target/release/node-template --dev`
+- To interact with the chain from the explorer, visit this address in your browser: `https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944`.
+- To interact with the Property Oracle front end, kindly read through the set up at: https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/accounts to set up. Its very easy.
 
+## Conclusion
+Property document helps secure your properties and removes any worries or stress from the though of losing what belongs to you. So even though your physical documents are duplicated or falsified by scammers, once you've submited your document using property oracle and gotten the right authority to sign it, 😁 YOU MY FRIEND, ARE VERY SAFE, FOREVER!
+
+Thank you for your time! ❤️
