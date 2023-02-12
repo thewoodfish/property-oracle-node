@@ -18,10 +18,10 @@ Once this state change is complete, the `NewUserRecorded` event is generated and
 
 - <b>`record_ptype:`</b>
    ```pub fn record_ptype(
-			origin: OriginFor<T>,
-			hash: H256,
-			name: Vec<u8>,
-			cid: Vec<u8>,
-			props: Vec<u8>,
-		) -> DispatchResult { ... } ``` <br><br>
+		origin: OriginFor<T>,
+		hash: H256,
+		name: Vec<u8>,
+		cid: Vec<u8>,
+		props: Vec<u8>,
+	) -> DispatchResult { ... } ``` <br><br>
 This function
