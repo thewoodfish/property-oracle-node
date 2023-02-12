@@ -40,7 +40,7 @@ This function accepts the `id(hash)` of a property and the `cid` of the `KILT` c
 Once this state change is complete, the `NewPropertyCredentialCreated` event is generated and visible on the blockchains UI explorer.
 
 
-- <b>`record_ptype:`</b>
+- <b>`transfer_property:`</b>
    ```
    pub fn transfer_property(
 	origin: OriginFor<T>,
