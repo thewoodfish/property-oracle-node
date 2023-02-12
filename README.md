@@ -36,7 +36,17 @@ Once this state change is complete, the `NewPropertyTypeRecorded` event is gener
    ```
    pub fn record_credential(origin: OriginFor<T>, hash: H256, cid: Vec<u8>) -> DispatchResult { ... }
    ``` 
-This function accepts the `id(hash)` of a property and the `cid` to the `KILT` credential or claim created of a particular property. This function records the unverified claim to a property and the user or `address` of the claimer, waiting to be verified or approved.
+This function accepts the `id(hash)` of a property and the `cid` of the `KILT` credential or claim created of a particular property. This function records the unverified claim to a property and the user or `address` of the claimer, waiting to be verified or approved.
 Once this state change is complete, the `NewPropertyCredentialCreated` event is generated and visible on the blockchains UI explorer.
 
 
+- <b>`record_ptype:`</b>
+   ```
+   pub fn transfer_property(
+	origin: OriginFor<T>,
+	recipient: T::AccountId,
+	property_id: H256,
+	cid: Vec<u8>,
+) -> DispatchResult { ... } 
+   ``` 
+This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim created of a particular property.
