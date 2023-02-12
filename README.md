@@ -13,5 +13,4 @@ Since this chain is build on <a target="_blank" href="https://substrate.io">subs
 ### Functions in the `oracle pallet`
 - <b>`record_user:`</b>
    ```pub fn record_user(origin: OriginFor<T>, cid: Vec<u8>) -> DispatchResult { ... }```
-
-This function accepts the CID of a users DID as input.
+This function accepts a `cid` as its input. The `cid` is generated when the `KILT did` document of a user is uploaded to `IPFS`. This `did` document is created when a user creates an account with Property Oracle because its most likely that the user would be interacting with the `<a target="_blank" href="https://kilt.io">kilt</a>` blockchain.
