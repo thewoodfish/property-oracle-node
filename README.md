@@ -47,6 +47,6 @@ Once this state change is complete, the `NewPropertyCredentialCreated` event is 
 	recipient: T::AccountId,
 	property_id: H256,
 	cid: Vec<u8>,
-) -> DispatchResult { ... } 
+   ) -> DispatchResult { ... } 
    ``` 
 This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim created of a particular property.
