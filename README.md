@@ -69,8 +69,8 @@ Once this state change is complete, the `PropertyTransferred` event is generated
 - After installation, clone this repository.
 - After cloning, open the terminal in the root folder and run the command: `cargo build --release`.
 - After your chain is built, run this command to start the chain: `./target/release/node-template --dev`
-- To interact with the chain from the explorer, visit this address in your browser: `https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944`.
-- To interact with the Property Oracle front end, kindly read through the set up at: https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944#/accounts to set up. Its very easy.
+- To interact with the chain from the explorer, visit this address in your browser: https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944.
+- To interact with the Property Oracle front end, you have to set it up first. kindly read through the set up at: https://github.com/thewoodfish/property_oracle#how-to-run-or-test-property-oracle. It is very easy.
 
 ## Conclusion
 Property document helps secure your properties and removes any worries or stress from the though of losing what belongs to you. So even though your physical documents are duplicated or falsified by scammers, once you've submited your document using property oracle and gotten the right authority to sign it, 😁 YOU MY FRIEND, ARE VERY SAFE, FOREVER!
