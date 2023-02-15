@@ -3,9 +3,9 @@
 # This is a base image to build substrate nodes
 FROM docker.io/paritytech/ci-linux:production as builder
 
-WORKDIR /property-oracle-node
+WORKDIR /node-template
 COPY . .
-RUN cargo build --locked --release
+RUN cargo build --package node-template --release --verbose
 
 # This is the 2nd stage: a very small image where we copy the binary."
 FROM docker.io/library/ubuntu:20.04
@@ -18,7 +18,7 @@ LABEL description="Multistage Docker image for Property Oracle Node" \
   image.documentation="https://github.com/thewoodfish/property-oracle-node"
 
 # Copy the node binary.
-COPY --from=builder /property-oracle-node/target/release/node-template /usr/local/bin
+COPY --from=builder /node-template/target/release/node-template /usr/local/bin
 
 RUN useradd -m -u 1000 -U -s /bin/sh -d /node-dev node-dev && \
   mkdir -p /chain-data /node-dev/.local/share && \

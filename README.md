@@ -44,12 +44,15 @@ Once this state change is complete, the `NewPropertyCredentialCreated` event is 
    ```
    pub fn transfer_property(
 	origin: OriginFor<T>,
-	recipient: T::AccountId,
-	property_id: H256,
-	cid: Vec<u8>,
+   recipient: T::AccountId,
+   property_id: H256,
+   original_document_cid: Vec<u8>,
+   new_sender_credential_cid: Vec<u8>,
+   recipient_credential_cid: Vec<u8>,
+   transfer_all: bool,
    ) -> DispatchResult { ... } 
    ``` 
-This functions accepts the `substrate address` of the recipient, the `id` of the intended property and the `cid` of the `KILT` credential or claim of the property. The functions processes the transfer of a claim to a property (verified or unverified) and changes the owner or claimer to the address of the recipient. This is an important operation as it can help trace the origin and history of the land sale, from hand to hand. <br>
+This functions accepts the `substrate address` of the recipient, the `id` of the intended property, `cid` of the original `KILT` credential or claim of the property, the `cid` of the credential gotten after a transfer of property has taken place(to indicate reduction), the `cid` of the property credenmtial of the recipient and a `boolean` - `transfer_all`, to indicate whether the sender is transferring the total property specified in the credential. The function processes the transfer of a claim to a property (or a part of it) (verified or unverified) and to the recipient. This is an important operation as it can help trace the origin and history of the land sale, from hand to hand. <br>
 Once this state change is complete, the `PropertyTransferred` event is generated and visible on the blockchains UI explorer.
 
 - <b>`attest_claim:`</b>
