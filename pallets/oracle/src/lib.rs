@@ -207,10 +207,11 @@ pub mod pallet {
 		) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
 			let mut is_owned_by_sender = false;
+			let mut create_new_crdential = false;
+
 			let mut od_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
 			let mut nsc_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
 			let mut rc_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
-			let mut create_new_crdential = false;
 
 			for i in original_document_cid.clone() {
 				od_cid.try_push(i).map_err(|_| Error::<T>::UriOverflow)?
@@ -267,7 +268,6 @@ pub mod pallet {
 
 				// save the new properties
 				CredentialRegistry::<T>::insert(&property_id, properties);
-
 			} else {
 				// throw
 				return Err(Error::<T>::PropertyEntryNotFound.into());
