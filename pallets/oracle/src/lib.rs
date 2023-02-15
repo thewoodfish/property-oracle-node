@@ -52,7 +52,7 @@ pub mod pallet {
 	#[scale_info(skip_type_params(T))]
 	#[codec(mel_bound())]
 	pub struct Credential<T: Config> {
-		pub owner: T::AccountId,
+		pub owners: BoundedVec<T::AccountId, T::MaxCount>,
 		pub verifiers: BoundedVec<T::AccountId, T::MaxCount>,
 		pub cid: BoundedVec<u8, T::MaxUriLength>,
 		pub timestamp: u64,
@@ -173,9 +173,11 @@ pub mod pallet {
 				uri.try_push(i).map_err(|_| Error::<T>::UriOverflow)?
 			}
 
+			let mut owners: BoundedVec<T::AccountId, T::MaxCount> = Default::default();
+			owners.try_push(who).map_err(|_| Error::<T>::CountOverflow)?;
+
 			// set up credential
-			let cred =
-				Credential { owner: who, verifiers: Default::default(), cid: uri, timestamp: 0 };
+			let cred = Credential { owners, verifiers: Default::default(), cid: uri, timestamp: 0 };
 
 			// try to get credential
 			if let Some(mut credentials) = CredentialRegistry::<T>::get(hash) {
@@ -198,31 +200,74 @@ pub mod pallet {
 			origin: OriginFor<T>,
 			recipient: T::AccountId,
 			property_id: H256,
-			cid: Vec<u8>,
+			original_document_cid: Vec<u8>,
+			new_sender_credential_cid: Vec<u8>,
+			recipient_credential_cid: Vec<u8>,
+			transfer_all: bool,
 		) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
 			let mut is_owned_by_sender = false;
-			let mut uri: BoundedVec<_, T::MaxUriLength> = Default::default();
+			let mut od_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
+			let mut nsc_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
+			let mut rc_cid: BoundedVec<_, T::MaxUriLength> = Default::default();
+			let mut create_new_crdential = false;
 
-			for i in cid.clone() {
-				uri.try_push(i).map_err(|_| Error::<T>::UriOverflow)?
+			for i in original_document_cid.clone() {
+				od_cid.try_push(i).map_err(|_| Error::<T>::UriOverflow)?
+			}
+
+			for j in new_sender_credential_cid.clone() {
+				nsc_cid.try_push(j).map_err(|_| Error::<T>::UriOverflow)?
+			}
+
+			for k in recipient_credential_cid.clone() {
+				rc_cid.try_push(k).map_err(|_| Error::<T>::UriOverflow)?
 			}
 
 			if let Some(mut properties) = CredentialRegistry::<T>::get(&property_id) {
 				for p in &mut properties {
-					if p.owner == sender.clone() && p.cid == uri {
-						p.owner = recipient.clone();
+					let owners = p.owners.to_vec();
+					let curr_owner = &owners[owners.len() - 1];
+
+					if *curr_owner == sender.clone() && p.cid == od_cid {
+						if transfer_all {
+							// just change the owner of the document
+							p.owners
+								.try_push(recipient.clone())
+								.map_err(|_| Error::<T>::CountOverflow)?;
+						} else {
+							// create new credential and update the old CID to reflect the transfer and creation of the new document
+							p.cid = nsc_cid;
+							create_new_crdential = true;
+						}
+
 						is_owned_by_sender = true;
 						break;
 					}
 				}
 
-				// save the new properties
-				CredentialRegistry::<T>::insert(&property_id, properties);
-
 				if !is_owned_by_sender {
 					return Err(Error::<T>::PropertyEntryNotFound.into());
 				}
+
+				if create_new_crdential {
+					let mut owners: BoundedVec<T::AccountId, T::MaxCount> = Default::default();
+					owners.try_push(recipient.clone()).map_err(|_| Error::<T>::CountOverflow)?;
+
+					// new credential
+					let cred = Credential {
+						owners,
+						verifiers: Default::default(),
+						cid: rc_cid,
+						timestamp: 0,
+					};
+
+					properties.try_push(cred).map_err(|_| Error::<T>::CountOverflow)?;
+				}
+
+				// save the new properties
+				CredentialRegistry::<T>::insert(&property_id, properties);
+
 			} else {
 				// throw
 				return Err(Error::<T>::PropertyEntryNotFound.into());

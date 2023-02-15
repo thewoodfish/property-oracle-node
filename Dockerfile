@@ -3,22 +3,22 @@
 # This is a base image to build substrate nodes
 FROM docker.io/paritytech/ci-linux:production as builder
 
-WORKDIR /node-template
+WORKDIR /property-oracle-node
 COPY . .
 RUN cargo build --locked --release
 
 # This is the 2nd stage: a very small image where we copy the binary."
 FROM docker.io/library/ubuntu:20.04
-LABEL description="Multistage Docker image for Substrate Node Template" \
+LABEL description="Multistage Docker image for Property Oracle Node" \
   image.type="builder" \
-  image.authors="you@email.com" \
-  image.vendor="Substrate Developer Hub" \
-  image.description="Multistage Docker image for Substrate Node Template" \
-  image.source="https://github.com/substrate-developer-hub/substrate-node-template" \
-  image.documentation="https://github.com/substrate-developer-hub/substrate-node-template"
+  image.authors="jasonholt2002@gmail.com" \
+  image.vendor="@thewoodfish" \
+  image.description="Multistage Docker image for Property Oracle Node" \
+  image.source="https://github.com/thewoodfish/property-oracle-node" \
+  image.documentation="https://github.com/thewoodfish/property-oracle-node"
 
 # Copy the node binary.
-COPY --from=builder /node-template/target/release/node-template /usr/local/bin
+COPY --from=builder /property-oracle-node/target/release/node-template /usr/local/bin
 
 RUN useradd -m -u 1000 -U -s /bin/sh -d /node-dev node-dev && \
   mkdir -p /chain-data /node-dev/.local/share && \
@@ -33,5 +33,5 @@ USER node-dev
 
 EXPOSE 30333 9933 9944 9615
 VOLUME ["/chain-data"]
-
+ 
 ENTRYPOINT ["/usr/local/bin/node-template"]
