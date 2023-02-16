@@ -253,7 +253,8 @@ pub mod pallet {
 
 				if create_new_crdential {
 					let mut owners: BoundedVec<T::AccountId, T::MaxCount> = Default::default();
-					owners.try_push(recipient.clone()).map_err(|_| Error::<T>::CountOverflow)?;
+					owners.try_push(sender.clone()).map_err(|_| Error::<T>::CountOverflow)?; 	// sender ->
+					owners.try_push(recipient.clone()).map_err(|_| Error::<T>::CountOverflow)?;	// recipient
 
 					// new credential
 					let cred = Credential {
