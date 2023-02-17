@@ -75,6 +75,9 @@ Once this state change is complete, the `PropertyTransferred` event is generated
 - To interact with the chain from the explorer, visit this address in your browser: https://polkadot.js.org/apps/?rpc=ws%3A%2F%2F127.0.0.1%3A9944.
 - To interact with the Property Oracle front end, you have to set it up first. kindly read through the set up at: https://github.com/thewoodfish/property_oracle#how-to-run-or-test-property-oracle. It is very easy.
 
+### Docker
+We're working incredibly hard to get the node into a docker image, it's not been successful. Please check back here soon for update on docker
+
 ## Conclusion
 Property Oracle helps secure your properties and removes any worries or stress from the thought/incident of losing what belongs to you. So even though your physical documents are duplicated or falsified by scammers, once you've submited your document using property oracle and gotten the right authority to sign it, 😁 YOU MY FRIEND, ARE VERY SAFE, FOREVER!
 
