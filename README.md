@@ -81,4 +81,4 @@ We're working incredibly hard to get the node into a docker image, it's not been
 ## Conclusion
 Property Oracle helps secure your properties and removes any worries or stress from the thought/incident of losing what belongs to you. So even though your physical documents are duplicated or falsified by scammers, once you've submited your document using property oracle and gotten the right authority to sign it, 😁 YOU MY FRIEND, ARE VERY SAFE, FOREVER!
 
-Thank you for your time! ❤️
+Thank you for your time. God bless you! ❤️
